@@ -6,16 +6,35 @@ using UnityEngine.Playables;
 
 public class InputManager
 {
-    public Action moveInputAction = null;
+    public Action<Define.MoveInputType> moveInputAction = null;
 
     public Action mouseInputAction = null;
 
     /* Input 확인하는 함수 */
     public void CheckInput()
     {
-        if (Input.anyKey)
+        if (Input.anyKeyDown)
         {
-
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                if (moveInputAction != null)
+                    moveInputAction.Invoke(Define.MoveInputType.Up);
+            }
+            else if(Input.GetKeyDown(KeyCode.S))
+            {
+                if (moveInputAction != null)
+                    moveInputAction.Invoke(Define.MoveInputType.Down);
+            }
+            else if(Input.GetKeyDown(KeyCode.A))
+            {
+                if (moveInputAction != null)
+                    moveInputAction.Invoke(Define.MoveInputType.Left);
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                if (moveInputAction != null)
+                    moveInputAction.Invoke(Define.MoveInputType.Right);
+            }
         }
     }
 }

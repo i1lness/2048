@@ -21,12 +21,12 @@ public class ScreenFix : MonoBehaviour
         if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // 원하는 비율보다 기기의 해상도 비가 더 큰 경우
         {
             float newWidth = ((float)setWidth / setHeight) / ((float)deviceWidth / deviceHeight); // 새로 적용할 너비 계산 (비율)
-            Camera.main.rect = new Rect((1f - newWidth) / 2f, 0f, newWidth, 1f); // 새로운 Rect 적용
+            transform.GetComponent<Camera>().rect = new Rect((1f - newWidth) / 2f, 0f, newWidth, 1f); // 새로운 Rect 적용
         }
         else // 게임의 해상도 비가 더 큰 경우
         {
             float newHeight = ((float)deviceWidth / deviceHeight) / ((float)setWidth / setHeight); // 새로 적용할 높이 계산 (비율)
-            Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight); // 새로운 Rect 적용
+            transform.GetComponent<Camera>().rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight); // 새로운 Rect 적용
         }
     }
 }
