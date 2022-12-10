@@ -26,9 +26,9 @@ public class ActiveTileScoreUIConnecter : MonoBehaviour
 
     void PositionUpdate()
     {
-        Vector3 a = Camera.main.WorldToViewportPoint(transform.position);
-        Vector3 b = GameObject.Find("Sub Camera").GetComponent<Camera>().ViewportToWorldPoint(a);
-        ConnectedUI.position = b;
+        Vector3 viewpoint = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToViewportPoint(transform.position);
+        Vector3 worldpoint = GameObject.Find("Sub Camera").GetComponent<Camera>().ViewportToWorldPoint(viewpoint);
+        ConnectedUI.position = worldpoint;
     }
 
     void Update()

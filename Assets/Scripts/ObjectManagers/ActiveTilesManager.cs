@@ -90,19 +90,21 @@ public class ActiveTilesManager : MonoBehaviour
 
                 int[] arrivalPoint = new int[2] {Int32.MinValue, xAxisIndex };
 
+                bool isMerged = false;
                 for (int yAxisUpperIndex = yAxisIndex - 1; yAxisUpperIndex >= 0; yAxisUpperIndex--)
                 {
                     if (_linkedActiveTile[yAxisUpperIndex, xAxisIndex] == null)
                     {
                         arrivalPoint[0] = yAxisUpperIndex;
                     }
-                    else if (_linkedActiveTile[yAxisUpperIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore == _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore)
+                    else if ((!isMerged) && (_linkedActiveTile[yAxisUpperIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore == _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore))
                     {
                         arrivalPoint[0] = yAxisUpperIndex;
                         _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore *= 2;
 
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisUpperIndex, xAxisIndex].GetComponent<ActiveTileScoreUIConnecter>().ConnectedUI.gameObject); // 원래 그 자리에 있던 Active 타일의 UI부분(점수 표시)까지 삭제
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisUpperIndex, xAxisIndex].gameObject);
+                        isMerged = true;
                     }
                     else
                     {
@@ -136,19 +138,21 @@ public class ActiveTilesManager : MonoBehaviour
 
                 int[] arrivalPoint = new int[2] { Int32.MinValue, xAxisIndex };
 
+                bool isMerged = false;
                 for (int yAxisDownIndex = yAxisIndex + 1; yAxisDownIndex < _tileAmountInRow; yAxisDownIndex++)
                 {
                     if (_linkedActiveTile[yAxisDownIndex, xAxisIndex] == null)
                     {
                         arrivalPoint[0] = yAxisDownIndex;
                     }
-                    else if (_linkedActiveTile[yAxisDownIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore == _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore)
+                    else if ((!isMerged) && (_linkedActiveTile[yAxisDownIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore == _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore))
                     {
                         arrivalPoint[0] = yAxisDownIndex;
                         _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore *= 2;
 
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisDownIndex, xAxisIndex].GetComponent<ActiveTileScoreUIConnecter>().ConnectedUI.gameObject);
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisDownIndex, xAxisIndex].gameObject);
+                        isMerged = true;
                     }
                     else
                     {
@@ -182,19 +186,21 @@ public class ActiveTilesManager : MonoBehaviour
 
                 int[] arrivalPoint = new int[2] { yAxisIndex, Int32.MinValue };
 
+                bool isMerged = false;
                 for (int xAxisLeftIndex = xAxisIndex - 1; xAxisLeftIndex >= 0; xAxisLeftIndex--)
                 {
                     if (_linkedActiveTile[yAxisIndex, xAxisLeftIndex] == null)
                     {
                         arrivalPoint[1] = xAxisLeftIndex;
                     }
-                    else if (_linkedActiveTile[yAxisIndex, xAxisLeftIndex].GetComponent<ActiveTileInfo>()._tileScore == _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore)
+                    else if ((!isMerged) && (_linkedActiveTile[yAxisIndex, xAxisLeftIndex].GetComponent<ActiveTileInfo>()._tileScore == _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore))
                     {
                         arrivalPoint[1] = xAxisLeftIndex;
                         _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore *= 2;
 
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisIndex, xAxisLeftIndex].GetComponent<ActiveTileScoreUIConnecter>().ConnectedUI.gameObject); // 원래 그 자리에 있던 Active 타일의 UI부분(점수 표시)까지 삭제
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisIndex, xAxisLeftIndex].gameObject);
+                        isMerged = true;
                     }
                     else
                     {
@@ -228,19 +234,21 @@ public class ActiveTilesManager : MonoBehaviour
 
                 int[] arrivalPoint = new int[2] { yAxisIndex, Int32.MinValue };
 
+                bool isMerged = false;
                 for (int xAxisRightIndex = xAxisIndex + 1; xAxisRightIndex < _tileAmountInRow; xAxisRightIndex++)
                 {
                     if (_linkedActiveTile[yAxisIndex, xAxisRightIndex] == null)
                     {
                         arrivalPoint[1] = xAxisRightIndex;
                     }
-                    else if (_linkedActiveTile[yAxisIndex, xAxisRightIndex].GetComponent<ActiveTileInfo>()._tileScore == _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore)
+                    else if ((!isMerged) && (_linkedActiveTile[yAxisIndex, xAxisRightIndex].GetComponent<ActiveTileInfo>()._tileScore == _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore))
                     {
                         arrivalPoint[1] = xAxisRightIndex;
                         _linkedActiveTile[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore *= 2;
 
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisIndex, xAxisRightIndex].GetComponent<ActiveTileScoreUIConnecter>().ConnectedUI.gameObject); // 원래 그 자리에 있던 Active 타일의 UI부분(점수 표시)까지 삭제
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisIndex, xAxisRightIndex].gameObject);
+                        isMerged = true;
                     }
                     else
                     {
