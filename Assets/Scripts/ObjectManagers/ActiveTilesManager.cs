@@ -47,14 +47,15 @@ public class ActiveTilesManager : MonoBehaviour
 
         _linkedActiveTile[yAxisIndex, xAxisIndex] = activeTile; // 배열로 activeTile를 저장
 
-        activeTile.position = _tiles[yAxisIndex, xAxisIndex].position; // 만들어진 ActiveTile의 위치와 크기를 원래 있던 타일틀과 맞추기
-        activeTile.localScale = _tiles[yAxisIndex, xAxisIndex].localScale;
+        activeTile.position = _tiles[yAxisIndex, xAxisIndex].position; // 만들어진 ActiveTile의 위치를 원래있던 타일틀과 맞추기
+        activeTile.localScale = Vector3.zero;
+        activeTile.GetComponent<ActiveTileInfo>()._settedScale = _tiles[yAxisIndex, xAxisIndex].localScale;
 
-        activeTile.GetComponent<ActiveTileInfo>().ManualPositionUpdate(); // 움직인 타일의 위치를 변수로 다시 저장
+       activeTile.GetComponent<ActiveTileInfo>().InitialisePositionVariable(); // 움직인 타일의 위치를 변수로 다시 저장
 
         activeTile.GetComponent<SpriteRenderer>().color = Color.blue; // TEMP
         
-        activeTile.GetComponent<ActiveTileScoreUIConnecter>().InitialiseController(_scoreUICanvas); // 컨트롤러 초기화
+        activeTile.GetComponent<ActiveTileScoreUIConnecter>().MakeAndConnectScoreUI(_scoreUICanvas);
 
         return activeTile;
     }
@@ -90,10 +91,10 @@ public class ActiveTilesManager : MonoBehaviour
                 if (_linkedActiveTile[yAxisIndex, xAxisIndex] == null)
                     continue;
 
-                int[] arrivalPoint = new int[2] {Int32.MinValue, xAxisIndex };
+                int[] arrivalPoint = new int[2] { Int32.MinValue, xAxisIndex };
 
                 bool isMerged = false;
-                for (int yAxisUpperIndex = yAxisIndex - 1 - mergedTileAmount; yAxisUpperIndex >= 0; yAxisUpperIndex--)
+                for (int yAxisUpperIndex = yAxisIndex - 1; yAxisUpperIndex - mergedTileAmount >= 0; yAxisUpperIndex--)
                 {
                     if (_linkedActiveTile[yAxisUpperIndex, xAxisIndex] == null)
                     {
@@ -144,7 +145,7 @@ public class ActiveTilesManager : MonoBehaviour
                 int[] arrivalPoint = new int[2] { Int32.MinValue, xAxisIndex };
 
                 bool isMerged = false;
-                for (int yAxisDownIndex = yAxisIndex + 1 + mergedTileAmount; yAxisDownIndex < _tileAmountInRow; yAxisDownIndex++)
+                for (int yAxisDownIndex = yAxisIndex + 1; yAxisDownIndex + mergedTileAmount < _tileAmountInRow; yAxisDownIndex++)
                 {
                     if (_linkedActiveTile[yAxisDownIndex, xAxisIndex] == null)
                     {
@@ -195,7 +196,7 @@ public class ActiveTilesManager : MonoBehaviour
                 int[] arrivalPoint = new int[2] { yAxisIndex, Int32.MinValue };
 
                 bool isMerged = false;
-                for (int xAxisLeftIndex = xAxisIndex - 1 - mergedTileAmount; xAxisLeftIndex >= 0; xAxisLeftIndex--)
+                for (int xAxisLeftIndex = xAxisIndex - 1; xAxisLeftIndex - mergedTileAmount >= 0; xAxisLeftIndex--)
                 {
                     if (_linkedActiveTile[yAxisIndex, xAxisLeftIndex] == null)
                     {
@@ -246,7 +247,7 @@ public class ActiveTilesManager : MonoBehaviour
                 int[] arrivalPoint = new int[2] { yAxisIndex, Int32.MinValue };
 
                 bool isMerged = false;
-                for (int xAxisRightIndex = xAxisIndex + 1 + mergedTileAmount; xAxisRightIndex < _tileAmountInRow; xAxisRightIndex++)
+                for (int xAxisRightIndex = xAxisIndex + 1; xAxisRightIndex + mergedTileAmount < _tileAmountInRow; xAxisRightIndex++)
                 {
                     if (_linkedActiveTile[yAxisIndex, xAxisRightIndex] == null)
                     {

@@ -8,7 +8,8 @@ public class ActiveTileInfo : MonoBehaviour
     public int _tileScore;
 
     public Vector3 _settedPosition;
-    private Vector3 _lastPosition;
+
+    public Vector3 _settedScale;
 
     void Start()
     {
@@ -24,18 +25,24 @@ public class ActiveTileInfo : MonoBehaviour
         }
     }
 
-    public void ManualPositionUpdate()
+    public void InitialisePositionVariable()
     {
         _settedPosition = transform.position;
-        _lastPosition = transform.position;
     }
 
     void Update()
     {
-        if ((_settedPosition - _lastPosition).magnitude > 0.0001) // 타일이 가야할 곳이 현재 위치와 다르면 실행
+        if ((_settedScale - transform.localScale).magnitude > 0.0001)
         {
-            transform.position = _settedPosition;
-            _lastPosition = _settedPosition; // 다음 프레임의 연산을 위해 현재 위치 저장
+            transform.localScale = Vector3.Lerp(transform.localScale, _settedScale, 0.1f);
+        }
+    }
+
+    void LateUpdate()
+    {
+        if ((_settedPosition - transform.position).magnitude > 0.0001) // 타일이 가야할 곳이 현재 위치와 다르면 실행
+        {
+            transform.position = Vector3.Lerp(transform.position, _settedPosition, 0.1f);
         }
     }
 }

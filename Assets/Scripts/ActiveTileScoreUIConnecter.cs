@@ -16,22 +16,22 @@ public class ActiveTileScoreUIConnecter : MonoBehaviour
         get; private set;
     }
 
-    public void InitialiseController(Transform parent)
+    public void MakeAndConnectScoreUI(Transform parent)
     {
         ConnectedUI = Manager.Resource.Instantiate("TileScoreUI", parent).transform;
     }
 
-    void PositionUpdate()
+    void UIPositionUpdate()
     {
         Vector3 viewpoint = GameObject.Find("Main Camera").GetComponent<Camera>().WorldToViewportPoint(transform.position);
         Vector3 worldpoint = GameObject.Find("Sub Camera").GetComponent<Camera>().ViewportToWorldPoint(viewpoint);
         ConnectedUI.position = worldpoint;
     }
 
-    void Update()
+    void LateUpdate()
     {
         TileScore = transform.GetComponent<ActiveTileInfo>()._tileScore;
         ConnectedUI.GetComponent<TextMeshProUGUI>().text = TileScore.ToString();
-        PositionUpdate();
+        UIPositionUpdate();
     }
 }
