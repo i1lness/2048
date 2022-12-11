@@ -13,7 +13,6 @@ public class ActiveTileInfo : MonoBehaviour
     void Start()
     {
         InitialiseTileScore();
-        ManualPositionUpdate();
     }
 
     void InitialiseTileScore()

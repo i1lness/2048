@@ -19,9 +19,6 @@ public class ActiveTileScoreUIConnecter : MonoBehaviour
     public void InitialiseController(Transform parent)
     {
         ConnectedUI = Manager.Resource.Instantiate("TileScoreUI", parent).transform;
-        /* To do
-         * 3. UI의 포지션 업데이트 함수 만들기
-         */
     }
 
     void PositionUpdate()

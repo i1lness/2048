@@ -83,6 +83,8 @@ public class ActiveTilesManager : MonoBehaviour
     {
         for (int xAxisIndex = 0; xAxisIndex < _tileAmountInRow; xAxisIndex++)
         {
+            int mergedTileAmount = 0;
+
             for (int yAxisIndex = 0; yAxisIndex < _tileAmountInRow; yAxisIndex++)
             {
                 if (_linkedActiveTile[yAxisIndex, xAxisIndex] == null)
@@ -91,7 +93,7 @@ public class ActiveTilesManager : MonoBehaviour
                 int[] arrivalPoint = new int[2] {Int32.MinValue, xAxisIndex };
 
                 bool isMerged = false;
-                for (int yAxisUpperIndex = yAxisIndex - 1; yAxisUpperIndex >= 0; yAxisUpperIndex--)
+                for (int yAxisUpperIndex = yAxisIndex - 1 - mergedTileAmount; yAxisUpperIndex >= 0; yAxisUpperIndex--)
                 {
                     if (_linkedActiveTile[yAxisUpperIndex, xAxisIndex] == null)
                     {
@@ -105,6 +107,7 @@ public class ActiveTilesManager : MonoBehaviour
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisUpperIndex, xAxisIndex].GetComponent<ActiveTileScoreUIConnecter>().ConnectedUI.gameObject); // 원래 그 자리에 있던 Active 타일의 UI부분(점수 표시)까지 삭제
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisUpperIndex, xAxisIndex].gameObject);
                         isMerged = true;
+                        mergedTileAmount++;
                     }
                     else
                     {
@@ -131,6 +134,8 @@ public class ActiveTilesManager : MonoBehaviour
     {
         for (int xAxisIndex = 0; xAxisIndex < _tileAmountInRow; xAxisIndex++)
         {
+            int mergedTileAmount = 0;
+
             for (int yAxisIndex = _tileAmountInRow - 1; yAxisIndex >= 0; yAxisIndex--)
             {
                 if (_linkedActiveTile[yAxisIndex, xAxisIndex] == null)
@@ -139,7 +144,7 @@ public class ActiveTilesManager : MonoBehaviour
                 int[] arrivalPoint = new int[2] { Int32.MinValue, xAxisIndex };
 
                 bool isMerged = false;
-                for (int yAxisDownIndex = yAxisIndex + 1; yAxisDownIndex < _tileAmountInRow; yAxisDownIndex++)
+                for (int yAxisDownIndex = yAxisIndex + 1 + mergedTileAmount; yAxisDownIndex < _tileAmountInRow; yAxisDownIndex++)
                 {
                     if (_linkedActiveTile[yAxisDownIndex, xAxisIndex] == null)
                     {
@@ -153,6 +158,7 @@ public class ActiveTilesManager : MonoBehaviour
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisDownIndex, xAxisIndex].GetComponent<ActiveTileScoreUIConnecter>().ConnectedUI.gameObject);
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisDownIndex, xAxisIndex].gameObject);
                         isMerged = true;
+                        mergedTileAmount++;
                     }
                     else
                     {
@@ -179,6 +185,8 @@ public class ActiveTilesManager : MonoBehaviour
     {
         for (int yAxisIndex = 0; yAxisIndex < _tileAmountInRow; yAxisIndex++)
         {
+            int mergedTileAmount = 0;
+
             for (int xAxisIndex = 0; xAxisIndex < _tileAmountInRow; xAxisIndex++)
             {
                 if (_linkedActiveTile[yAxisIndex, xAxisIndex] == null)
@@ -187,7 +195,7 @@ public class ActiveTilesManager : MonoBehaviour
                 int[] arrivalPoint = new int[2] { yAxisIndex, Int32.MinValue };
 
                 bool isMerged = false;
-                for (int xAxisLeftIndex = xAxisIndex - 1; xAxisLeftIndex >= 0; xAxisLeftIndex--)
+                for (int xAxisLeftIndex = xAxisIndex - 1 - mergedTileAmount; xAxisLeftIndex >= 0; xAxisLeftIndex--)
                 {
                     if (_linkedActiveTile[yAxisIndex, xAxisLeftIndex] == null)
                     {
@@ -201,6 +209,7 @@ public class ActiveTilesManager : MonoBehaviour
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisIndex, xAxisLeftIndex].GetComponent<ActiveTileScoreUIConnecter>().ConnectedUI.gameObject); // 원래 그 자리에 있던 Active 타일의 UI부분(점수 표시)까지 삭제
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisIndex, xAxisLeftIndex].gameObject);
                         isMerged = true;
+                        mergedTileAmount++;
                     }
                     else
                     {
@@ -227,6 +236,8 @@ public class ActiveTilesManager : MonoBehaviour
     {
         for (int yAxisIndex = 0; yAxisIndex < _tileAmountInRow; yAxisIndex++)
         {
+            int mergedTileAmount = 0;
+
             for (int xAxisIndex = _tileAmountInRow - 1; xAxisIndex >= 0; xAxisIndex--)
             {
                 if (_linkedActiveTile[yAxisIndex, xAxisIndex] == null)
@@ -235,7 +246,7 @@ public class ActiveTilesManager : MonoBehaviour
                 int[] arrivalPoint = new int[2] { yAxisIndex, Int32.MinValue };
 
                 bool isMerged = false;
-                for (int xAxisRightIndex = xAxisIndex + 1; xAxisRightIndex < _tileAmountInRow; xAxisRightIndex++)
+                for (int xAxisRightIndex = xAxisIndex + 1 + mergedTileAmount; xAxisRightIndex < _tileAmountInRow; xAxisRightIndex++)
                 {
                     if (_linkedActiveTile[yAxisIndex, xAxisRightIndex] == null)
                     {
@@ -249,6 +260,7 @@ public class ActiveTilesManager : MonoBehaviour
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisIndex, xAxisRightIndex].GetComponent<ActiveTileScoreUIConnecter>().ConnectedUI.gameObject); // 원래 그 자리에 있던 Active 타일의 UI부분(점수 표시)까지 삭제
                         Manager.Resource.Destroy(_linkedActiveTile[yAxisIndex, xAxisRightIndex].gameObject);
                         isMerged = true;
+                        mergedTileAmount++;
                     }
                     else
                     {
