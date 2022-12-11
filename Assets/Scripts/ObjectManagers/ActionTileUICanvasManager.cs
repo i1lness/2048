@@ -2,18 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanvasManager : MonoBehaviour
+public class ActionTileUICanvasManager : MonoBehaviour
 {
     void Start()
     {
-        InitialiseUICanvas(transform.GetComponent<Canvas>());
-    }
-
-    Canvas InitialiseUICanvas(Canvas canvas)
-    {
+        Canvas canvas = transform.GetComponent<Canvas>();
         canvas.worldCamera = GameObject.Find("Sub Camera").GetComponent<Camera>();
         canvas.sortingLayerName = "ActionTileScoreUI";
-
-        return canvas;
     }
 }
