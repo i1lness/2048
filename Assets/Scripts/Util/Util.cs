@@ -14,25 +14,13 @@ public class Util
         return parent;
     }
 
-    public static Transform GetOrAddEmptyGameObject(string name, Transform parent = null)
+    public static Transform AddEmptyGameObject(string name, Transform parent = null)
     {
-        Transform gameObject;
+        Transform gameObject = new GameObject(name).transform;
 
         if (parent != null)
         {
-            if (parent.Find(name) == null)
-            {
-                gameObject = new GameObject(name).transform;
-                gameObject.parent = parent;
-            }
-            else
-            {
-                gameObject = parent.Find(name);
-            }
-        }
-        else
-        {
-            gameObject = new GameObject(name).transform;
+            gameObject.parent = parent;
         }
 
         return gameObject;

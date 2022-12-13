@@ -29,12 +29,11 @@ public class BoardManager : MonoBehaviour
 
         Util.InitialiseChild(transform);
 
-        Transform tileCollectionObject = Util.GetOrAddEmptyGameObject("Tiles", transform).InitialiseChild();
+        Transform tileCollectionObject = Util.AddEmptyGameObject("Tiles", transform).InitialiseChild();
         tiles = SetTiles(boardSize, tileAmountInRow, tileCollectionObject); // 만들어진 타일들을 저장
 
-        Transform actionTileCollectionObject = Util.GetOrAddEmptyGameObject("ActionTiles", transform).InitialiseChild();
-        ActiveTilesManager activeTilesManager = actionTileCollectionObject.AddComponent<ActiveTilesManager>();
-        activeTilesManager._board = transform.GetComponent<BoardManager>(); // ActiveTilesManager에 board 속성을 넘기기 위해서 BoardManager 컴포넌트를 연결
+        Transform actionTileCollectionObject = Util.AddEmptyGameObject("ActionTiles", transform).InitialiseChild();
+        actionTileCollectionObject.AddComponent<ActiveTilesManager>();
 
         return tiles; // 저장한 타일들 반환
     }
