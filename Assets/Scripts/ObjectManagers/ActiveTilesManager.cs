@@ -115,7 +115,8 @@ public class ActiveTilesManager : MonoBehaviour
                 if (arrivalPoint[0] == Int32.MinValue)
                     continue;
 
-                mergedTileAmount = arrivalPoint[0];
+                if (isMerged)
+                    mergedTileAmount = arrivalPoint[0] + 1;
 
                 _activeTiles[arrivalPoint[0], arrivalPoint[1]] = _activeTiles[yAxisIndex, xAxisIndex];
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
@@ -166,7 +167,8 @@ public class ActiveTilesManager : MonoBehaviour
                 if (arrivalPoint[0] == Int32.MinValue)
                     continue;
 
-                mergedTileAmount = _tileAmountInRow - arrivalPoint[0];
+                if (isMerged)
+                    mergedTileAmount = _tileAmountInRow - arrivalPoint[0];
 
                 _activeTiles[arrivalPoint[0], arrivalPoint[1]] = _activeTiles[yAxisIndex, xAxisIndex];
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
@@ -217,7 +219,8 @@ public class ActiveTilesManager : MonoBehaviour
                 if (arrivalPoint[1] == Int32.MinValue)
                     continue;
 
-                mergedTileAmount = arrivalPoint[1];
+                if (isMerged)
+                    mergedTileAmount = arrivalPoint[1] + 1;
 
                 _activeTiles[arrivalPoint[0], arrivalPoint[1]] = _activeTiles[yAxisIndex, xAxisIndex];
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
@@ -268,7 +271,8 @@ public class ActiveTilesManager : MonoBehaviour
                 if (arrivalPoint[1] == Int32.MinValue)
                     continue;
 
-                mergedTileAmount = _tileAmountInRow - arrivalPoint[1];
+                if (isMerged)
+                    mergedTileAmount = _tileAmountInRow - arrivalPoint[1];
 
                 _activeTiles[arrivalPoint[0], arrivalPoint[1]] = _activeTiles[yAxisIndex, xAxisIndex];
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
