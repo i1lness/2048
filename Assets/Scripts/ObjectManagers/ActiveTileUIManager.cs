@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ActiveTileScoreUIManager : MonoBehaviour
+public class ActiveTileUIManager : MonoBehaviour
 {
     Transform _activeTile;
 
@@ -20,7 +20,7 @@ public class ActiveTileScoreUIManager : MonoBehaviour
         transform.position = worldpoint;
     }
 
-    void LateUpdate()
+    void LateUpdate() // if 문 사용하여 계산 최소화하기
     {
         int tileScore = _activeTile.GetComponent<ActiveTileInfo>()._tileScore;
         transform.GetComponent<TextMeshProUGUI>().text = tileScore.ToString();

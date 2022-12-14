@@ -19,23 +19,18 @@ public class BoardManager : MonoBehaviour
     {
         _boardSize = transform.localScale.x;
         TileAmountInRow = 4;
-        Tiles = SetBoard(_boardSize, TileAmountInRow);
+        SetBoard(_boardSize, TileAmountInRow);
     }
 
     /* 보드 세팅 후 타일들을 반환하는 함수*/
-    Transform[,] SetBoard(float boardSize, int tileAmountInRow)
+    void SetBoard(float boardSize, int tileAmountInRow)
     {
-        Transform[,] tiles;
-
         Util.InitialiseChild(transform);
 
         Transform tileCollectionObject = Util.AddEmptyGameObject("Tiles", transform).InitialiseChild();
-        tiles = SetTiles(boardSize, tileAmountInRow, tileCollectionObject); // 만들어진 타일들을 저장
+        Tiles = SetTiles(boardSize, tileAmountInRow, tileCollectionObject); // 만들어진 타일들을 저장
 
-        Transform actionTileCollectionObject = Util.AddEmptyGameObject("ActionTiles", transform).InitialiseChild();
-        actionTileCollectionObject.AddComponent<ActiveTilesManager>();
-
-        return tiles; // 저장한 타일들 반환
+        Manager.Resource.Instantiate("ActiveTiles", transform);
     }
 
     /* 게임보드 안에 기본적으로 배치할 타일 생성 및 배치 후 만들어진 타일들을 반환하는 함수 */

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ActiveTilesManager : MonoBehaviour
@@ -60,6 +62,8 @@ public class ActiveTilesManager : MonoBehaviour
 
     void UpdateAllTilePosition(Define.MoveInputType moveInputType)
     {
+        transform.GetComponent<AudioSource>().Play();
+
         switch (moveInputType)
         {
             case Define.MoveInputType.Up:

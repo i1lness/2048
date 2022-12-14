@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionTileUICanvasManager : MonoBehaviour
+public class ActiveTileUICanvasManager : MonoBehaviour
 {
     void Start()
     {

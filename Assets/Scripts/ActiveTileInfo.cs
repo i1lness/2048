@@ -30,7 +30,7 @@ public class ActiveTileInfo : MonoBehaviour
         _settedPosition = transform.position;
     }
 
-    void LateUpdate()
+    void LateUpdate() // Lerp 제대로 사용하기
     {
         if ((_settedPosition - transform.position).magnitude > 0.0001)
         {
