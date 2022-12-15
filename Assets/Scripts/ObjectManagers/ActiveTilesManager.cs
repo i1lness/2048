@@ -126,7 +126,8 @@ public class ActiveTilesManager : MonoBehaviour
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
 
                 Transform activeTile = _activeTiles[arrivalPoint[0], arrivalPoint[1]];
-                activeTile.GetComponent<ActiveTileInfo>()._settedPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
+                activeTile.GetComponent<ActiveTileInfo>().InitialisePositionVariable();
+                activeTile.GetComponent<ActiveTileInfo>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
 
                 _linkAbleList.Add(_tileAmountInRow * yAxisIndex + xAxisIndex);
                 _linkAbleList.Remove(_tileAmountInRow * arrivalPoint[0] + arrivalPoint[1]);
@@ -178,7 +179,8 @@ public class ActiveTilesManager : MonoBehaviour
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
 
                 Transform activeTile = _activeTiles[arrivalPoint[0], arrivalPoint[1]];
-                activeTile.GetComponent<ActiveTileInfo>()._settedPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
+                activeTile.GetComponent<ActiveTileInfo>().InitialisePositionVariable();
+                activeTile.GetComponent<ActiveTileInfo>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
 
                 _linkAbleList.Add(_tileAmountInRow * yAxisIndex + xAxisIndex);
                 _linkAbleList.Remove(_tileAmountInRow * arrivalPoint[0] + arrivalPoint[1]);
@@ -230,7 +232,8 @@ public class ActiveTilesManager : MonoBehaviour
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
 
                 Transform activeTile = _activeTiles[arrivalPoint[0], arrivalPoint[1]];
-                activeTile.GetComponent<ActiveTileInfo>()._settedPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
+                activeTile.GetComponent<ActiveTileInfo>().InitialisePositionVariable();
+                activeTile.GetComponent<ActiveTileInfo>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
 
                 _linkAbleList.Add(_tileAmountInRow * yAxisIndex + xAxisIndex);
                 _linkAbleList.Remove(_tileAmountInRow * arrivalPoint[0] + arrivalPoint[1]);
@@ -282,7 +285,8 @@ public class ActiveTilesManager : MonoBehaviour
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
 
                 Transform activeTile = _activeTiles[arrivalPoint[0], arrivalPoint[1]];
-                activeTile.GetComponent<ActiveTileInfo>()._settedPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
+                activeTile.GetComponent<ActiveTileInfo>().InitialisePositionVariable();
+                activeTile.GetComponent<ActiveTileInfo>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
 
                 _linkAbleList.Add(_tileAmountInRow * yAxisIndex + xAxisIndex);
                 _linkAbleList.Remove(_tileAmountInRow * arrivalPoint[0] + arrivalPoint[1]);

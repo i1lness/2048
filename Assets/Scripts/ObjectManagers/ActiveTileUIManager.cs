@@ -20,7 +20,7 @@ public class ActiveTileUIManager : MonoBehaviour
         transform.position = worldpoint;
     }
 
-    void LateUpdate() // if 문 사용하여 계산 최소화하기
+    void LateUpdate()
     {
         int tileScore = _activeTile.GetComponent<ActiveTileInfo>()._tileScore;
         transform.GetComponent<TextMeshProUGUI>().text = tileScore.ToString();

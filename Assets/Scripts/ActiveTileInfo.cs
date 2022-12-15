@@ -7,7 +7,13 @@ public class ActiveTileInfo : MonoBehaviour
 {
     public int _tileScore;
 
-    public Vector3 _settedPosition;
+    float _lerpTime = 0.08f;
+    float _currentLerpTime;
+
+    private bool isArrived = false;
+
+    private Vector3 _startPosition;
+    public Vector3 _endPosition;
 
     public Vector3 _settedScale;
 
@@ -27,15 +33,30 @@ public class ActiveTileInfo : MonoBehaviour
 
     public void InitialisePositionVariable()
     {
-        _settedPosition = transform.position;
+        _startPosition = transform.position;
+        _endPosition = transform.position;
+        _currentLerpTime = 0;
+        isArrived = false;
     }
 
-    void LateUpdate() // Lerp 제대로 사용하기
+    void LateUpdate()
     {
-        if ((_settedPosition - transform.position).magnitude > 0.0001)
+        if (!isArrived)
         {
-            transform.position = Vector3.Lerp(transform.position, _settedPosition, 0.1f);
+            _currentLerpTime += Time.deltaTime;
+
+            if (_currentLerpTime > _lerpTime)
+            {
+                _currentLerpTime = _lerpTime;
+                isArrived = true;
+            }
+
+            float t = _currentLerpTime / _lerpTime;
+            t = Mathf.Sin(t * Mathf.PI * 0.5f);
+
+            transform.position = Vector3.Lerp(_startPosition, _endPosition, t);
         }
+
         if ((_settedScale - transform.localScale).magnitude > 0.0001)
         {
             transform.localScale = Vector3.Lerp(transform.localScale, _settedScale, 0.1f);
