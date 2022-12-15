@@ -6,11 +6,11 @@ using UnityEngine.Playables;
 
 public class InputManager
 {
-    public Action<Define.MoveInputType> moveInputAction = null;
+    public static Action<Define.MoveInputType> moveInputAction = null;
 
-    public Action mouseInputAction = null;
+    public static Action mouseInputAction = null;
 
-    public Action escClickAction = null;
+    public static Action escClickAction = null;
 
     /* Input 확인하는 함수 */
     public void CheckInput()

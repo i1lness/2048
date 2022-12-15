@@ -32,7 +32,13 @@ public class ActiveTilesManager : MonoBehaviour
         MakeActiveTile();
         MakeActiveTile();
 
-        Manager.Input.moveInputAction += UpdateAllTilePosition;
+        InputManager.moveInputAction -= UpdateAllTilePosition;
+        InputManager.moveInputAction += UpdateAllTilePosition;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.moveInputAction -= UpdateAllTilePosition;
     }
 
     Transform MakeActiveTile()

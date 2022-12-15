@@ -18,7 +18,7 @@ public class BoardManager : MonoBehaviour
     void Start()
     {
         _boardSize = transform.localScale.x;
-        TileAmountInRow = 4;
+        TileAmountInRow = transform.parent.GetComponent<EnvironmentInfo>().tileAmountInRow;
         SetBoard(_boardSize, TileAmountInRow);
     }
 

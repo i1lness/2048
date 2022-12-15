@@ -6,10 +6,26 @@ public class MenuUIManager : MonoBehaviour
 {
     bool isCanvasActive;
 
+    int tileAmountInRow = 4;
+
+    [SerializeField]
+    Transform Environment;
+
+    public void MakeBoard()
+    {
+        Environment.GetComponent<EnvironmentInfo>().MakeBoard(tileAmountInRow);
+    }
+
+    public void ExitToScreen()
+    {
+        Application.Quit();
+    }
+
     void Start()
     {
         isCanvasActive = gameObject.activeInHierarchy;
-        Manager.Input.escClickAction += UISwitch;
+        InputManager.escClickAction -= UISwitch;
+        InputManager.escClickAction += UISwitch;
     }
 
     void UISwitch()
