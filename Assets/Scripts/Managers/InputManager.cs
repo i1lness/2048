@@ -10,6 +10,8 @@ public class InputManager
 
     public Action mouseInputAction = null;
 
+    public Action escClickAction = null;
+
     /* Input 확인하는 함수 */
     public void CheckInput()
     {
@@ -34,6 +36,12 @@ public class InputManager
             {
                 if (moveInputAction != null)
                     moveInputAction.Invoke(Define.MoveInputType.Right);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (escClickAction != null)
+                    escClickAction.Invoke();
             }
         }
     }
