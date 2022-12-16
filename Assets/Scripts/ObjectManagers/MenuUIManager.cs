@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuUIManager : MonoBehaviour
@@ -14,6 +12,7 @@ public class MenuUIManager : MonoBehaviour
     public void MakeBoard()
     {
         Environment.GetComponent<EnvironmentInfo>().MakeBoard(tileAmountInRow);
+        DisableMenu();
     }
 
     public void ExitToScreen()
@@ -21,11 +20,18 @@ public class MenuUIManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void SetTileAmountInRow()
+    {
+        tileAmountInRow = (int)transform.Find("Slider").GetComponent<UnityEngine.UI.Slider>().value;
+    }
+
     void Start()
     {
         isCanvasActive = gameObject.activeInHierarchy;
         InputManager.escClickAction -= UISwitch;
         InputManager.escClickAction += UISwitch;
+
+        DisableMenu();
     }
 
     void UISwitch()

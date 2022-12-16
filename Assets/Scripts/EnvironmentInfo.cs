@@ -15,7 +15,10 @@ public class EnvironmentInfo : MonoBehaviour
     public void MakeBoard(int tileAmountInRow)
     {
         this.tileAmountInRow = tileAmountInRow;
-        Manager.Resource.Destroy(transform.Find("Board").gameObject);
+
+        if (transform.Find("Board") != null)
+            Manager.Resource.Destroy(transform.Find("Board").gameObject);
+
         Manager.Resource.Instantiate("Board", transform);
     }
 }
