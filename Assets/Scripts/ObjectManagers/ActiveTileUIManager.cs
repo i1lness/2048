@@ -10,6 +10,9 @@ public class ActiveTileUIManager : MonoBehaviour
     void Start()
     {
         _activeTile = transform.parent.parent;
+        _activeTile.GetComponent<ActiveTileInfo>().TileUIInfoUpdate -= UpdateUIInfo;
+        _activeTile.GetComponent<ActiveTileInfo>().TileUIInfoUpdate += UpdateUIInfo;
+        _activeTile.GetComponent<ActiveTileInfo>().ChangeTileColorByTileScore();
     }
 
 
@@ -22,8 +25,19 @@ public class ActiveTileUIManager : MonoBehaviour
 
     void LateUpdate()
     {
-        int tileScore = _activeTile.GetComponent<ActiveTileInfo>()._tileScore;
-        transform.GetComponent<TextMeshProUGUI>().text = tileScore.ToString();
         UIPositionUpdate();
+    }
+
+    void UpdateUIInfo(int tileScore)
+    {
+        if (tileScore <= 16)
+        {
+            transform.GetComponent<TextMeshProUGUI>().color = new Color(0.22f, 0.22f, 0.2f, 0.75f);
+        }
+        else
+        {
+            transform.GetComponent<TextMeshProUGUI>().color = Color.white;
+        }
+        transform.GetComponent<TextMeshProUGUI>().text = tileScore.ToString();
     }
 }

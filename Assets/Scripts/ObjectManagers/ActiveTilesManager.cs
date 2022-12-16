@@ -61,8 +61,6 @@ public class ActiveTilesManager : MonoBehaviour
         activeTile.localScale = Vector3.zero;
         activeTile.GetComponent<ActiveTileInfo>()._settedScale = _tiles[yAxisIndex, xAxisIndex].localScale;
 
-        activeTile.GetComponent<SpriteRenderer>().color = Color.blue; // TEMP
-
         return activeTile;
     }
 
