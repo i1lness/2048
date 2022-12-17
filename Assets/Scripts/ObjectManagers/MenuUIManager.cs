@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MenuUIManager : MonoBehaviour
@@ -6,13 +7,16 @@ public class MenuUIManager : MonoBehaviour
 
     int tileAmountInRow = 4;
 
+    public static Action ResetBoardAction; 
+
     [SerializeField]
     Transform Environment;
 
     public void MakeBoard()
     {
         Environment.GetComponent<EnvironmentManager>()._board.GetComponent<BoardManager>().SetBoard(tileAmountInRow);
-        DisableMenu();
+        if (ResetBoardAction != null)
+            ResetBoardAction.Invoke();
     }
 
     public void ExitToScreen()
@@ -28,8 +32,12 @@ public class MenuUIManager : MonoBehaviour
     void Start()
     {
         isCanvasActive = gameObject.activeInHierarchy;
+
         InputManager.escClickAction -= UISwitch;
         InputManager.escClickAction += UISwitch;
+
+        ResetBoardAction -= DisableMenu;
+        ResetBoardAction += DisableMenu;
 
         DisableMenu();
     }

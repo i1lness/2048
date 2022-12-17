@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnvironmentManager : MonoBehaviour
 {
-    public int _tileAmountInRow = 4;
-
     public Transform _board;
 
     void Start()

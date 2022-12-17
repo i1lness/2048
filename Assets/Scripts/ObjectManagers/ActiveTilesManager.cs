@@ -8,6 +8,8 @@ public class ActiveTilesManager : MonoBehaviour
 {
     BoardManager _board;
 
+    public static Action NoTileSpaceLeft;
+
     int _tileAmountInRow;
 
     Transform[,] _tiles;
@@ -43,9 +45,11 @@ public class ActiveTilesManager : MonoBehaviour
 
     Transform MakeActiveTile()
     {
-        if (_linkAbleList.Count <= 0) // 만약 더 이상 자리가 없을 시 실행
+        if (_linkAbleList.Count <= 0 && NoTileSpaceLeft != null) // 만약 더 이상 타일놓을 자리가 없을 시 실행
         {
-
+            NoTileSpaceLeft.Invoke();
+            InputManager.moveInputAction -= UpdateAllTilePosition;
+            return null;
         }
 
 

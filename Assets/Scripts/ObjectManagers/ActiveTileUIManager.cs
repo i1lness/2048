@@ -14,7 +14,7 @@ public class ActiveTileUIManager : MonoBehaviour
         _activeTile.GetComponent<ActiveTileManager>().TileUIInfoUpdate -= UpdateUIInfo; // 타일의 정보가 ActiveTileManager에서 업데이트됨으로 delegate로 연동시켜 UI도 업데이트 되도록 한다
         _activeTile.GetComponent<ActiveTileManager>().TileUIInfoUpdate += UpdateUIInfo;
 
-        UpdateUIInfo(_activeTile.GetComponent<ActiveTileManager>()._tileScore); // 한번 수동으로 점수를 동기화시킨다
+        UpdateUIInfo(_activeTile.GetComponent<ActiveTileManager>()._tileScore); // 한번 수동으로 점수를 동기화시킨다 (유니티 특성상 첫 동기화는 작동을 안함)
     }
 
     /* 타일과 점수텍스트(UI)위치 연동하는 함수 */

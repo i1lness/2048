@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
-    private float _boardSize;
-
     public Transform[,] Tiles
     {
         get; private set;
@@ -27,7 +25,7 @@ public class BoardManager : MonoBehaviour
         float boardSize = transform.localScale.x;
         Util.InitialiseChild(transform);
 
-        Transform tileCollectionObject = Util.AddEmptyGameObject("Tiles", transform).InitialiseChild();
+        Transform tileCollectionObject = Util.AddEmptyGameObject("Tiles", transform);
         Tiles = SetTiles(boardSize, tileAmountInRow, tileCollectionObject); // 만들어진 타일들을 저장
 
         Manager.Resource.Instantiate("ActiveTiles", transform);
