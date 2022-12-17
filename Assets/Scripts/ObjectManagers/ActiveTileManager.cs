@@ -22,8 +22,10 @@ public class ActiveTileManager : MonoBehaviour
     void Start()
     {
         InitialiseTileScore();
+        ChangeTileColorByTileScore();
     }
 
+    /* 타일 점수 초기설정 함수 */
     void InitialiseTileScore()
     {
         _tileScore = 2;
@@ -33,6 +35,7 @@ public class ActiveTileManager : MonoBehaviour
         }
     }
 
+    /* 타일 위치관련 변수 초기화 함수 */
     public void InitialisePositionVariable()
     {
         _startPosition = transform.position;
@@ -108,7 +111,7 @@ public class ActiveTileManager : MonoBehaviour
             TileUIInfoUpdate.Invoke(_tileScore);
     }
 
-    void MoveAnimation()
+    void MoveAnimation() // 움직이는 애니메이션 구현
     {
         _currentLerpTime += Time.deltaTime;
 

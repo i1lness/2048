@@ -43,6 +43,12 @@ public class ActiveTilesManager : MonoBehaviour
 
     Transform MakeActiveTile()
     {
+        if (_linkAbleList.Count <= 0) // 만약 더 이상 자리가 없을 시 실행
+        {
+
+        }
+
+
         Transform activeTile = Manager.Resource.Instantiate("ActiveTile").transform;
         activeTile.parent = transform;
 
@@ -58,7 +64,7 @@ public class ActiveTilesManager : MonoBehaviour
         activeTile.position = _tiles[yAxisIndex, xAxisIndex].position; // 만들어진 ActiveTile의 위치를 원래있던 타일틀과 맞추기
         activeTile.GetComponent<ActiveTileManager>().InitialisePositionVariable();
 
-        activeTile.localScale = Vector3.zero;
+        activeTile.localScale = Vector3.zero; // 만들어진 ActiveTile의 소환 애니메이션 (팝업 효과)
         activeTile.GetComponent<ActiveTileManager>()._settedScale = _tiles[yAxisIndex, xAxisIndex].localScale;
 
         return activeTile;
