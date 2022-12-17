@@ -17,14 +17,14 @@ public class BoardManager : MonoBehaviour
 
     void Start()
     {
-        _boardSize = transform.localScale.x;
-        TileAmountInRow = transform.parent.GetComponent<EnvironmentInfo>().tileAmountInRow;
-        SetBoard(_boardSize, TileAmountInRow);
+        TileAmountInRow = 4;
+        SetBoard(TileAmountInRow);
     }
 
     /* 보드 세팅 후 타일들을 반환하는 함수*/
-    void SetBoard(float boardSize, int tileAmountInRow)
+    public void SetBoard(int tileAmountInRow)
     {
+        float boardSize = transform.localScale.x;
         Util.InitialiseChild(transform);
 
         Transform tileCollectionObject = Util.AddEmptyGameObject("Tiles", transform).InitialiseChild();

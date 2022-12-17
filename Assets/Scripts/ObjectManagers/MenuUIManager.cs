@@ -11,7 +11,7 @@ public class MenuUIManager : MonoBehaviour
 
     public void MakeBoard()
     {
-        Environment.GetComponent<EnvironmentInfo>().MakeBoard(tileAmountInRow);
+        Environment.GetComponent<EnvironmentManager>()._board.GetComponent<BoardManager>().SetBoard(tileAmountInRow);
         DisableMenu();
     }
 

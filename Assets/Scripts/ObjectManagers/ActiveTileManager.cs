@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ActiveTileInfo : MonoBehaviour
+public class ActiveTileManager : MonoBehaviour
 {
     public int _tileScore;
     private int _lastTileScore;

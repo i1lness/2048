@@ -56,10 +56,10 @@ public class ActiveTilesManager : MonoBehaviour
         _activeTiles[yAxisIndex, xAxisIndex] = activeTile; // 배열로 activeTile를 저장
 
         activeTile.position = _tiles[yAxisIndex, xAxisIndex].position; // 만들어진 ActiveTile의 위치를 원래있던 타일틀과 맞추기
-        activeTile.GetComponent<ActiveTileInfo>().InitialisePositionVariable();
+        activeTile.GetComponent<ActiveTileManager>().InitialisePositionVariable();
 
         activeTile.localScale = Vector3.zero;
-        activeTile.GetComponent<ActiveTileInfo>()._settedScale = _tiles[yAxisIndex, xAxisIndex].localScale;
+        activeTile.GetComponent<ActiveTileManager>()._settedScale = _tiles[yAxisIndex, xAxisIndex].localScale;
 
         return activeTile;
     }
@@ -106,10 +106,10 @@ public class ActiveTilesManager : MonoBehaviour
                     {
                         arrivalPoint[0] = yAxisUpperIndex;
                     }
-                    else if ((!isMerged) && (_activeTiles[yAxisUpperIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore == _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore))
+                    else if ((!isMerged) && (_activeTiles[yAxisUpperIndex, xAxisIndex].GetComponent<ActiveTileManager>()._tileScore == _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileManager>()._tileScore))
                     {
                         arrivalPoint[0] = yAxisUpperIndex;
-                        _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore *= 2;
+                        _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileManager>()._tileScore *= 2;
 
                         Manager.Resource.Destroy(_activeTiles[yAxisUpperIndex, xAxisIndex].gameObject);
                         isMerged = true;
@@ -130,8 +130,8 @@ public class ActiveTilesManager : MonoBehaviour
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
 
                 Transform activeTile = _activeTiles[arrivalPoint[0], arrivalPoint[1]];
-                activeTile.GetComponent<ActiveTileInfo>().InitialisePositionVariable();
-                activeTile.GetComponent<ActiveTileInfo>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
+                activeTile.GetComponent<ActiveTileManager>().InitialisePositionVariable();
+                activeTile.GetComponent<ActiveTileManager>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
 
                 _linkAbleList.Add(_tileAmountInRow * yAxisIndex + xAxisIndex);
                 _linkAbleList.Remove(_tileAmountInRow * arrivalPoint[0] + arrivalPoint[1]);
@@ -159,10 +159,10 @@ public class ActiveTilesManager : MonoBehaviour
                     {
                         arrivalPoint[0] = yAxisDownIndex;
                     }
-                    else if ((!isMerged) && (_activeTiles[yAxisDownIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore == _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore))
+                    else if ((!isMerged) && (_activeTiles[yAxisDownIndex, xAxisIndex].GetComponent<ActiveTileManager>()._tileScore == _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileManager>()._tileScore))
                     {
                         arrivalPoint[0] = yAxisDownIndex;
-                        _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore *= 2;
+                        _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileManager>()._tileScore *= 2;
 
                         Manager.Resource.Destroy(_activeTiles[yAxisDownIndex, xAxisIndex].gameObject);
                         isMerged = true;
@@ -183,8 +183,8 @@ public class ActiveTilesManager : MonoBehaviour
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
 
                 Transform activeTile = _activeTiles[arrivalPoint[0], arrivalPoint[1]];
-                activeTile.GetComponent<ActiveTileInfo>().InitialisePositionVariable();
-                activeTile.GetComponent<ActiveTileInfo>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
+                activeTile.GetComponent<ActiveTileManager>().InitialisePositionVariable();
+                activeTile.GetComponent<ActiveTileManager>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
 
                 _linkAbleList.Add(_tileAmountInRow * yAxisIndex + xAxisIndex);
                 _linkAbleList.Remove(_tileAmountInRow * arrivalPoint[0] + arrivalPoint[1]);
@@ -212,10 +212,10 @@ public class ActiveTilesManager : MonoBehaviour
                     {
                         arrivalPoint[1] = xAxisLeftIndex;
                     }
-                    else if ((!isMerged) && (_activeTiles[yAxisIndex, xAxisLeftIndex].GetComponent<ActiveTileInfo>()._tileScore == _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore))
+                    else if ((!isMerged) && (_activeTiles[yAxisIndex, xAxisLeftIndex].GetComponent<ActiveTileManager>()._tileScore == _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileManager>()._tileScore))
                     {
                         arrivalPoint[1] = xAxisLeftIndex;
-                        _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore *= 2;
+                        _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileManager>()._tileScore *= 2;
 
                         Manager.Resource.Destroy(_activeTiles[yAxisIndex, xAxisLeftIndex].gameObject);
                         isMerged = true;
@@ -236,8 +236,8 @@ public class ActiveTilesManager : MonoBehaviour
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
 
                 Transform activeTile = _activeTiles[arrivalPoint[0], arrivalPoint[1]];
-                activeTile.GetComponent<ActiveTileInfo>().InitialisePositionVariable();
-                activeTile.GetComponent<ActiveTileInfo>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
+                activeTile.GetComponent<ActiveTileManager>().InitialisePositionVariable();
+                activeTile.GetComponent<ActiveTileManager>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
 
                 _linkAbleList.Add(_tileAmountInRow * yAxisIndex + xAxisIndex);
                 _linkAbleList.Remove(_tileAmountInRow * arrivalPoint[0] + arrivalPoint[1]);
@@ -265,10 +265,10 @@ public class ActiveTilesManager : MonoBehaviour
                     {
                         arrivalPoint[1] = xAxisRightIndex;
                     }
-                    else if ((!isMerged) && (_activeTiles[yAxisIndex, xAxisRightIndex].GetComponent<ActiveTileInfo>()._tileScore == _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore))
+                    else if ((!isMerged) && (_activeTiles[yAxisIndex, xAxisRightIndex].GetComponent<ActiveTileManager>()._tileScore == _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileManager>()._tileScore))
                     {
                         arrivalPoint[1] = xAxisRightIndex;
-                        _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileInfo>()._tileScore *= 2;
+                        _activeTiles[yAxisIndex, xAxisIndex].GetComponent<ActiveTileManager>()._tileScore *= 2;
 
                         Manager.Resource.Destroy(_activeTiles[yAxisIndex, xAxisRightIndex].gameObject);
                         isMerged = true;
@@ -289,8 +289,8 @@ public class ActiveTilesManager : MonoBehaviour
                 _activeTiles[yAxisIndex, xAxisIndex] = null;
 
                 Transform activeTile = _activeTiles[arrivalPoint[0], arrivalPoint[1]];
-                activeTile.GetComponent<ActiveTileInfo>().InitialisePositionVariable();
-                activeTile.GetComponent<ActiveTileInfo>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
+                activeTile.GetComponent<ActiveTileManager>().InitialisePositionVariable();
+                activeTile.GetComponent<ActiveTileManager>()._endPosition = _tiles[arrivalPoint[0], arrivalPoint[1]].position;
 
                 _linkAbleList.Add(_tileAmountInRow * yAxisIndex + xAxisIndex);
                 _linkAbleList.Remove(_tileAmountInRow * arrivalPoint[0] + arrivalPoint[1]);

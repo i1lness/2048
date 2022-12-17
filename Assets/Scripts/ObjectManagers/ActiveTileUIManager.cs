@@ -10,9 +10,9 @@ public class ActiveTileUIManager : MonoBehaviour
     void Start()
     {
         _activeTile = transform.parent.parent;
-        _activeTile.GetComponent<ActiveTileInfo>().TileUIInfoUpdate -= UpdateUIInfo;
-        _activeTile.GetComponent<ActiveTileInfo>().TileUIInfoUpdate += UpdateUIInfo;
-        _activeTile.GetComponent<ActiveTileInfo>().ChangeTileColorByTileScore();
+        _activeTile.GetComponent<ActiveTileManager>().TileUIInfoUpdate -= UpdateUIInfo;
+        _activeTile.GetComponent<ActiveTileManager>().TileUIInfoUpdate += UpdateUIInfo;
+        _activeTile.GetComponent<ActiveTileManager>().ChangeTileColorByTileScore();
     }
 
 
