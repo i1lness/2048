@@ -22,6 +22,7 @@ public class BoardManager : MonoBehaviour
     /* 보드 세팅 후 타일들을 반환하는 함수*/
     public void SetBoard(int tileAmountInRow)
     {
+        TileAmountInRow = tileAmountInRow;
         float boardSize = transform.localScale.x;
         Util.InitialiseChild(transform);
 
