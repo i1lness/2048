@@ -42,7 +42,6 @@ public class MenuUIManager : MonoBehaviour
         DisableMenu();
     }
 
-    /* UI 활성상태 변환하는 함수 */
     void UISwitch()
     {
         if (isCanvasActive)

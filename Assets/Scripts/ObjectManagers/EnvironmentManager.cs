@@ -10,7 +10,7 @@ public class EnvironmentManager : MonoBehaviour
 
     void Start()
     {
-        if (transform.Find("Board") == null) // _board Á¤ÀÇ
+        if (transform.Find("Board") == null)
         {
             _board = Manager.Resource.Instantiate("Board", transform).transform;
         }

@@ -20,8 +20,7 @@ public class ActiveTilesManager : MonoBehaviour
     void Start()
     {
         _board = transform.parent.GetComponent<BoardManager>();
-
-        _tiles = _board.Tiles; // 객체 초기화 구문 (#1)
+        _tiles = _board.Tiles; 
         _tileAmountInRow = _board.TileAmountInRow;
 
         _activeTiles = new Transform[_tileAmountInRow, _tileAmountInRow];
@@ -29,7 +28,7 @@ public class ActiveTilesManager : MonoBehaviour
         for (int index = _tileAmountInRow * _tileAmountInRow - 1; index >= 0; index--)
         {
             _linkAbleList.Add(index);
-        } // (#1) 여기까지
+        } 
 
         MakeActiveTile();
         MakeActiveTile();

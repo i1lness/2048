@@ -25,7 +25,6 @@ public class ActiveTileManager : MonoBehaviour
         ChangeTileColorByTileScore();
     }
 
-    /* 타일 점수 초기설정 함수 */
     void InitialiseTileScore()
     {
         _tileScore = 2;
@@ -35,7 +34,6 @@ public class ActiveTileManager : MonoBehaviour
         }
     }
 
-    /* 타일 위치관련 변수 초기화 함수 */
     public void InitialisePositionVariable()
     {
         _startPosition = transform.position;
@@ -78,7 +76,7 @@ public class ActiveTileManager : MonoBehaviour
             colorDiff *= 0.1f;
             transform.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.9f, 0.9f - colorDiff, 1);
         }
-        else //if (_tileScore <= 512)
+        else
         {
             int tempTileScore = _tileScore;
             float colorDiff = 0;
@@ -91,27 +89,12 @@ public class ActiveTileManager : MonoBehaviour
             colorDiff *= 0.08f;
             transform.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.9f - colorDiff * 1.5f, 0.4f - colorDiff, 1);
         }
-        //else
-        //{
-        //    int tempTileScore = _tileScore;
-        //    float colorDiff = 0;
-        //    while (tempTileScore > 1)
-        //    {
-        //        colorDiff++;
-        //        tempTileScore /= 2;
-        //    }
-        //    colorDiff -= 9;
-        //    colorDiff *= 0.03f;
-        //    if (colorDiff > 0.18f)
-        //        colorDiff = 0.18f;
-        //    transform.GetComponent<SpriteRenderer>().color = new Color(0.9f - colorDiff, 0.18f - colorDiff, 0.3f - colorDiff, 1);
-        //}
 
         if (TileUIInfoUpdate != null)
             TileUIInfoUpdate.Invoke(_tileScore);
     }
 
-    void MoveAnimation() // 움직이는 애니메이션 구현
+    void MoveAnimation()
     {
         _currentLerpTime += Time.deltaTime;
 
