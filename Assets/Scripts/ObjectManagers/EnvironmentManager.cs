@@ -6,6 +6,8 @@ public class EnvironmentManager : MonoBehaviour
 {
     public Transform _board;
 
+    public GameObject _gameOverText;
+
     void Start()
     {
         if (transform.Find("Board") == null) // _board Á¤ÀÇ
@@ -16,5 +18,26 @@ public class EnvironmentManager : MonoBehaviour
         {
             _board = transform.Find("Board");
         }
+
+        if (_gameOverText == null)
+            _gameOverText = transform.Find("GameOverText").gameObject;
+
+        ActiveTilesManager.NoTileSpaceLeft -= EnableGameOverUI;
+        ActiveTilesManager.NoTileSpaceLeft += EnableGameOverUI;
+
+        MenuUIManager.ResetBoardAction -= DisableGameOverUI;
+        MenuUIManager.ResetBoardAction += DisableGameOverUI;
+
+        DisableGameOverUI();
+    }
+
+    void EnableGameOverUI()
+    {
+        _gameOverText.SetActive(true);
+    }
+
+    void DisableGameOverUI()
+    {
+        _gameOverText.SetActive(false);
     }
 }

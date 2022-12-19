@@ -9,6 +9,11 @@ public class ActiveTileUIManager : MonoBehaviour
 
     void Start()
     {
+
+        Canvas canvas = transform.parent.GetComponent<Canvas>();
+        canvas.worldCamera = GameObject.Find("Sub Camera").GetComponent<Camera>();
+        canvas.sortingLayerName = "ActionTileScoreUI";
+
         _activeTile = transform.parent.parent;
 
         _activeTile.GetComponent<ActiveTileManager>().TileUIInfoUpdate -= UpdateUIInfo; // 타일의 정보가 ActiveTileManager에서 업데이트됨으로 delegate로 연동시켜 UI도 업데이트 되도록 한다
